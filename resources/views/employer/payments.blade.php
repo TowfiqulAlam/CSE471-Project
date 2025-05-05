@@ -36,7 +36,15 @@
                             @if ($task->status === 'completed' && $task->payment_status !== 'paid')
                                 <form action="{{ route('employer.pay', $task->id) }}" method="POST">
                                     @csrf
-                                    <button class="btn btn-sm btn-success">Mark as Paid</button>
+                                    <div class="mb-2">
+                                        <select name="endorsement_tag" class="form-select form-select-sm" required>
+                                            <option value="" disabled selected>Select Endorsement</option>
+                                            <option value="Fast Worker">Fast Worker</option>
+                                            <option value="Reliable">Reliable</option>
+                                            <option value="Great Communicator">Great Communicator</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-sm btn-success">Mark as Paid & Endorse</button>
                                 </form>
                             @elseif ($task->payment_status === 'paid')
                                 <span class="badge bg-success">Already Paid</span>

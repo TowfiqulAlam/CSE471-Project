@@ -26,4 +26,10 @@ class Task extends Model
     {
         return $this->belongsTo(\App\Models\User::class, 'job_seeker_id');
     }
+
+    public function endorsements()
+    {
+        return $this->hasMany(Endorsement::class);
+    }
+
 }

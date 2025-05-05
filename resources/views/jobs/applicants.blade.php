@@ -42,7 +42,11 @@
             <tbody>
                 @foreach($applications as $application)
                     <tr>
-                        <td>{{ $application->user->name ?? 'Unknown' }}</td>
+                        <td>
+                            <a href="{{ route('applicants.view', $application->user->id) }}" class="btn btn-link">
+                                {{ $application->user->name ?? 'Unknown' }}
+                            </a>
+                        </td>
                         <td>{{ $application->user->email ?? 'Unknown' }}</td>
                         <td>{{ ucfirst($application->status) }}</td>
                         <td>

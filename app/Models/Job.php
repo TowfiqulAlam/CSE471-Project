@@ -43,5 +43,17 @@ class Job extends Model
     }
 
 
+    public function job()
+    {
+        return $this->belongsTo(Job::class);
+    }
+
+    public function seeker()
+    {
+        return $this->belongsTo(User::class, 'seeker_id');
+    }
+
+
+
 
 }

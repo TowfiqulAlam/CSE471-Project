@@ -48,6 +48,16 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">Your Badges</div>
+                <div class="card-body">
+                    <p>View endorsement tags you've earned from completed jobs.</p>
+                    <a href="{{ route('endorsements.index') }}" class="btn btn-sm btn-outline-secondary">View Badges</a>
+                </div>
+            </div>
+        </div>
+
 
         <div class="col-md-6 mb-4">
             <div class="card">

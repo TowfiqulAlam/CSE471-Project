@@ -15,6 +15,7 @@ use App\Http\Controllers\RatingController;
 use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\JobSeekerController;
+use App\Http\Controllers\EndorsementController;
 
 
 
@@ -115,10 +116,8 @@ Route::post('/ratings', [RatingController::class, 'store'])->name('ratings.store
 Route::put('/jobs/applications/{applicationId}/hire', [JobController::class, 'hireApplicant'])->middleware('auth')->name('jobs.hire');
 
 
-Route::get('jobseekers/{id}/ratings', [JobseekerController::class, 'viewRatings'])->name('jobseekers.ratings');
-Route::get('jobseekers/{id}/portfolio', [JobseekerController::class, 'viewPortfolio'])->name('jobseekers.portfolio');
-Route::get('jobseekers/{id}/skills', [JobseekerController::class, 'viewSkills'])->name('jobseekers.skills');
-Route::get('jobseekers/{id}/availability', [JobseekerController::class, 'viewAvailability'])->name('jobseekers.availability');
+//view
+Route::get('/applicants/{user}', [ProfileController::class, 'viewApplicant'])->name('applicants.view');
 
 
 //Payment
@@ -127,6 +126,10 @@ Route::get('/employer/payments', [\App\Http\Controllers\PaymentController::class
 
 // Payment action (POST or GET, your choice)
 Route::post('/employer/pay/{taskId}', [\App\Http\Controllers\PaymentController::class, 'pay'])->name('employer.pay');
+
+
+//Badges
+Route::get('/endorsements', [EndorsementController::class, 'index'])->middleware('auth')->name('endorsements.index');
 
 
 
