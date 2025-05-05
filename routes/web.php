@@ -131,6 +131,11 @@ Route::post('/employer/pay/{taskId}', [\App\Http\Controllers\PaymentController::
 //Badges
 Route::get('/endorsements', [EndorsementController::class, 'index'])->middleware('auth')->name('endorsements.index');
 
+//Upload Video
+Route::get('/videos/upload', [VideoController::class, 'uploadForm'])->name('videos.upload');
+Route::post('/videos/upload', [VideoController::class, 'store'])->name('videos.store');
+
+
 
 
 

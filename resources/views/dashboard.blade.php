@@ -125,6 +125,18 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-dark text-white">Upload Learning Video</div>
+                <div class="card-body">
+                    <p>Share videos that help job seekers improve relevant skills.</p>
+                    <a href="{{ route('videos.upload') }}" class="btn btn-sm btn-outline-dark">Upload Video</a>
+                </div>
+            </div>
+        </div>
+
+
         @endif
     </div>
 </div>

@@ -1,19 +1,21 @@
-
 @extends('layouts.layout')
 
 @section('title', 'Videos')
 
-
 @section('content')
-<div class="container">
-    <h1>Recommended Videos</h1>
+<div class="container mt-4">
+    <h2>Recommended Videos</h2>
 
     @forelse ($videos as $video)
         <div class="card mb-3">
             <div class="card-body">
                 <h5 class="card-title">{{ $video->title }}</h5>
                 <p class="card-text">{{ $video->description }}</p>
-                <a href="{{ $video->url }}" target="_blank" class="btn btn-primary">Watch Video</a>
+
+                <video width="100%" height="auto" controls>
+                    <source src="{{ asset($video->url) }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </div>
     @empty
