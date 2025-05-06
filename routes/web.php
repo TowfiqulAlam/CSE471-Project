@@ -16,7 +16,7 @@ use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\JobSeekerController;
 use App\Http\Controllers\EndorsementController;
-
+use App\Http\Controllers\OpenAIController;
 
 
 
@@ -136,7 +136,8 @@ Route::get('/videos/upload', [VideoController::class, 'uploadForm'])->name('vide
 Route::post('/videos/upload', [VideoController::class, 'store'])->name('videos.store');
 
 
-
+//AI suggestion
+Route::get('/job-seeker/suggestion', [OpenAIController::class, 'getJobSuggestion'])->name('job.suggestion');
 
 
 

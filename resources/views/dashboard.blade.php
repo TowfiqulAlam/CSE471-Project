@@ -64,7 +64,7 @@
                 <div class="card-header bg-info text-white">Job Suggestions</div>
                 <div class="card-body">
                     <p>See AI-based job suggestions based on your skills.</p>
-                    <a href="#" class="btn btn-sm btn-outline-info">Get Suggestions</a>
+                    <a href="{{ route('job.suggestion') }}" class="btn btn-info fw-bold mt-3">Get Suggestion</a>
                     <a href="{{ route('jobs.search') }}" class="btn btn-outline-primary">Search Jobs</a>
                     <a href="{{ url('/videos') }}" class="btn btn-success">Upgrade Your Skills</a>
                     <a href="{{ url('/tasks') }}" class="btn btn-sm btn-outline-primary mt-2">Manage Tasks</a>
