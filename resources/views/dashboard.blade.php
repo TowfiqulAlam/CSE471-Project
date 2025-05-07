@@ -122,6 +122,7 @@
 
                     <a href="{{ route('ratings.create', ['userId' => Auth::user()->id]) }}" class="btn btn-primary">Give Rating</a>
                     <a href="{{ route('employer.payments') }}" class="btn btn-sm btn-outline-danger">Go to Payments</a>
+                    <a href="{{ route('employer.hired.employees') }}" class="btn btn-primary mb-3">View Hired Employees</a>
                 </div>
             </div>
         </div>

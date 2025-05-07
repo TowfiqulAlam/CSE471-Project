@@ -20,6 +20,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\EndorsementController;
 use App\Http\Controllers\OpenAIController;
 use App\Http\Controllers\StripePaymentController;
+use App\Http\Controllers\ChatController;
 
 
 
@@ -155,6 +156,16 @@ Route::post('/employer/manual-pay/{taskId}', [PaymentController::class, 'pay'])-
 
 Route::get('/employer/payment/success/{task}', [PaymentController::class, 'handleSuccess'])->name('employer.payment.success');
 Route::get('/employer/payment/cancel', [PaymentController::class, 'handleCancel'])->name('employer.payment.cancel');
+
+
+////Chat
+Route::get('/chat/{job_id}/{user_id}', [ChatController::class, 'index'])->name('chat.index');
+Route::post('/chat/send', [ChatController::class, 'send'])->name('chat.send');
+
+
+
+Route::get('/employer/hired-employees', [JobSeekerController::class, 'hiredEmployees'])->name('employer.hired.employees');
+
 
 
 

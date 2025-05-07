@@ -32,6 +32,17 @@
                             </div>
                             <button type="submit" class="btn btn-success btn-sm mt-2">Update Status</button>
                         </form>
+
+                        <!-- Check if the task has a job and if that job has an employer -->
+                        @if ($task->job && $task->job->user)
+                            <a href="{{ route('chat.index', ['job_id' => $task->job_id, 'user_id' => $task->job->user->id]) }}" class="btn btn-primary btn-sm mt-2">
+                                Chat with Employer
+                            </a>
+                        @else
+                            <span class="text-danger">Employer not available</span>
+                            <p>Task might not be assigned properly, or the employer may have been removed.</p>
+
+                        @endif
                     </div>
                 </div>
             </div>

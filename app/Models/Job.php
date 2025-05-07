@@ -24,6 +24,13 @@ class Job extends Model
         'ending_time',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+
     // Define a relationship with the User model (Employer)
     public function employer()
     {
@@ -52,6 +59,12 @@ class Job extends Model
     {
         return $this->belongsTo(User::class, 'seeker_id');
     }
+
+    public function applications()
+    {
+        return $this->hasMany(Application::class);
+    }
+
 
 
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Job;
+use Illuminate\Support\Facades\Auth;
 
 class JobSeekerController extends Controller
 {
@@ -39,6 +41,15 @@ class JobSeekerController extends Controller
         $user = User::find($id);
         $availability = $user->availability; // Assuming you have an availability relationship
         return view('jobseekers.availability', compact('user', 'availability'));
+    }
+
+    public function hiredEmployees()
+    {
+        $jobs = Job::with(['applications' => function ($query) {
+            $query->where('status', 'hired')->with('jobSeeker');
+        }])->where('user_id', Auth::id())->get();
+
+        return view('employer.hired_employees', compact('jobs'));
     }
 
 }
