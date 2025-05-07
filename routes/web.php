@@ -15,8 +15,12 @@ use App\Http\Controllers\RatingController;
 use App\Models\Job;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\JobSeekerController;
+use App\Http\Controllers\PaymentController;
+
 use App\Http\Controllers\EndorsementController;
 use App\Http\Controllers\OpenAIController;
+use App\Http\Controllers\StripePaymentController;
+
 
 
 
@@ -125,7 +129,7 @@ Route::get('/applicants/{user}', [ProfileController::class, 'viewApplicant'])->n
 Route::get('/employer/payments', [\App\Http\Controllers\PaymentController::class, 'index'])->name('employer.payments');
 
 // Payment action (POST or GET, your choice)
-Route::post('/employer/pay/{taskId}', [\App\Http\Controllers\PaymentController::class, 'pay'])->name('employer.pay');
+//Route::post('/employer/pay/{taskId}', [\App\Http\Controllers\PaymentController::class, 'pay'])->name('employer.pay');
 
 
 //Badges
@@ -139,6 +143,18 @@ Route::post('/videos/upload', [VideoController::class, 'store'])->name('videos.s
 //AI suggestion
 Route::get('/job-seeker/suggestion', [OpenAIController::class, 'getJobSuggestion'])->name('job.suggestion');
 
+
+
+
+//StripePayment
+// This is the correct route for Stripe
+Route::post('/employer/stripe/pay/{task}', [PaymentController::class, 'createStripeSession'])->name('employer.stripe.pay');
+
+// This old one is for manual payment — rename or remove if unused
+Route::post('/employer/manual-pay/{taskId}', [PaymentController::class, 'pay'])->name('employer.manual.pay');
+
+Route::get('/employer/payment/success/{task}', [PaymentController::class, 'handleSuccess'])->name('employer.payment.success');
+Route::get('/employer/payment/cancel', [PaymentController::class, 'handleCancel'])->name('employer.payment.cancel');
 
 
 

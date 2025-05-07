@@ -21,7 +21,7 @@ class OpenAIController extends Controller
                 'HTTP-Referer' => config('app.url'),
                 'X-Title' => 'Job Suggestion Assistant',
             ])
-            ->timeout(120) // Set timeout to 60 seconds
+            ->timeout(120) // Timout 120 sec
             ->retry(3, 2000) // Retry 3 times, waiting 2 seconds between each
             ->post('https://openrouter.ai/api/v1/chat/completions', [
                 'model' => 'deepseek/deepseek-r1:free',
