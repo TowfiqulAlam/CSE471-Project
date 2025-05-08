@@ -52,7 +52,7 @@ class VideoController extends Controller
             'updated_at' => now(),
         ]);
 
-        return redirect('/videos')->with('success', 'Video uploaded successfully.');
+        return redirect('/dashboard')->with('success', 'Video uploaded successfully.');
     }
 
 }

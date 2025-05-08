@@ -12,7 +12,7 @@
                 <h5 class="card-title">{{ $video->title }}</h5>
                 <p class="card-text">{{ $video->description }}</p>
 
-                <video width="100%" height="auto" controls>
+                <video width="40%" height="auto" controls>
                     <source src="{{ asset($video->url) }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
