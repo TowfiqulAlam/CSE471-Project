@@ -11,15 +11,18 @@ class TaskController extends Controller
     // Show tasks assigned to the job seeker
     public function index()
     {
-        $tasks = Task::where('job_seeker_id', Auth::id())->get(); // changed user_id to job_seeker_id
+        $tasks = Task::with('job')
+            ->where('job_seeker_id', Auth::id())
+            ->orderByRaw("FIELD(payment_status, 'unpaid', 'paid')") // unpaid first
+            ->get();
+
         return view('tasks.index', compact('tasks'));
     }
-
     // Update task status
     public function updateStatus(Request $request, $id)
     {
         $task = Task::where('id', $id)
-                    ->where('job_seeker_id', Auth::id()) // changed user_id to job_seeker_id
+                    ->where('job_seeker_id', Auth::id()) 
                     ->firstOrFail();
 
         $task->status = $request->input('status');

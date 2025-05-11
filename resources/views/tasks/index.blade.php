@@ -18,6 +18,15 @@
                         {{ $task->name }}
                     </div>
                     <div class="card-body">
+
+                        {{-- Show Job Title and Description --}}
+                        @if($task->job)
+                            <p><strong>Job Title:</strong> {{ $task->job->title }}</p>
+                            <p><strong>Job Description:</strong> {{ $task->job->description }}</p>
+                        @else
+                            <p class="text-danger">Job details unavailable.</p>
+                        @endif
+
                         <p><strong>Status:</strong> {{ ucfirst(str_replace('_', ' ', $task->status)) }}</p>
                         <p><strong>Payment Amount:</strong> ${{ number_format($task->payment_amount, 2) }}</p>
                         <p><strong>Payment Status:</strong> {{ ucfirst($task->payment_status) }}</p>
@@ -33,7 +42,6 @@
                             <button type="submit" class="btn btn-success btn-sm mt-2">Update Status</button>
                         </form>
 
-                        <!-- Check if the task has a job and if that job has an employer -->
                         @if ($task->job && $task->job->user)
                             <a href="{{ route('chat.index', ['job_id' => $task->job_id, 'user_id' => $task->job->user->id]) }}" class="btn btn-primary btn-sm mt-2">
                                 Chat with Employer
@@ -41,7 +49,6 @@
                         @else
                             <span class="text-danger">Employer not available</span>
                             <p>Task might not be assigned properly, or the employer may have been removed.</p>
-
                         @endif
                     </div>
                 </div>

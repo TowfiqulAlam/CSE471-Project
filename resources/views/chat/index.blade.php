@@ -27,7 +27,10 @@
                 @forelse($messages as $message)
                     <div class="mb-3">
                         <div class="d-flex {{ $message->sender_id === $currentUser->id ? 'justify-content-end' : 'justify-content-start' }}">
-                            <div class="p-2 rounded" style="max-width: 75%; background-color: {{ $message->sender_id === $currentUser->id ? '#d1e7dd' : '#e2e3e5' }};">
+                            @php
+                                $backgroundColor = $message->sender_id === $currentUser->id ? '#d1e7dd' : '#e2e3e5';
+                            @endphp
+                            <div class="p-2 rounded" style="max-width: 75%; background-color: {{ $backgroundColor }};">
                                 <p class="mb-1"><strong>{{ $message->sender->name }}:</strong> {{ $message->message }}</p>
                                 <small class="text-muted">{{ $message->created_at->diffForHumans() }}</small>
                             </div>

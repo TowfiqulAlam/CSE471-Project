@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Endorsement;
 use Stripe\Stripe;
 use Stripe\Checkout\Session as StripeSession;
+use App\Notifications\PaymentCompletedNotification;
 
 
 class PaymentController extends Controller
@@ -89,6 +90,9 @@ class PaymentController extends Controller
 
         // Clear session endorsement
         session()->forget('endorsement_tag');
+
+        // Notify the job seeker
+        $task->seeker->notify(new PaymentCompletedNotification($task));
 
         return redirect()->route('employer.payments')->with('success', 'Payment completed and endorsement saved.');
     }
