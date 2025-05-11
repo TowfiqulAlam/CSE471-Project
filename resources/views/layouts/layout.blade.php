@@ -52,19 +52,24 @@
 <div class="header d-flex justify-content-between align-items-center">
     <div class="d-flex align-items-center">
         <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo me-3">
-        <h6 class="mb-0">QUICKHIRE</h6>
+        <h3 class="mb-0">QUICKHIRE</h3>
     </div>
 
-    @if (!Request::is('login') && !Request::is('register'))
-    <div>
-        <a href="{{ route('home') }}" class="btn btn-outline-light btn-sm me-2">Home</a>
-        <form method="POST" action="{{ url('/logout') }}" class="d-inline">
-            @csrf
-            <button class="btn btn-light btn-sm" type="submit">Logout</button>
-        </form>
-    </div>
+    @if (Request::is('login'))
+        <div>
+            <a href="{{ route('register') }}" class="btn btn-outline-light btn-sm">Register</a>
+        </div>
+    @elseif (!Request::is('register'))
+        <div>
+            <a href="{{ route('home') }}" class="btn btn-outline-light btn-sm me-2">Home</a>
+            <form method="POST" action="{{ url('/logout') }}" class="d-inline">
+                @csrf
+                <button class="btn btn-light btn-sm" type="submit">Logout</button>
+            </form>
+        </div>
     @endif
 </div>
+
 
 
 
