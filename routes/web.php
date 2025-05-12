@@ -21,6 +21,9 @@ use App\Http\Controllers\EndorsementController;
 use App\Http\Controllers\OpenAIController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\JobApplicationController;
+
 
 
 
@@ -165,6 +168,19 @@ Route::post('/chat/send', [ChatController::class, 'send'])->name('chat.send');
 
 
 Route::get('/employer/hired-employees', [JobSeekerController::class, 'hiredEmployees'])->name('employer.hired.employees');
+
+
+
+Route::patch('/applications/{application}/toggle', [ApplicationController::class, 'toggleStatus'])->name('applications.toggle');
+
+
+
+
+Route::patch('/applications/{application}', [ApplicationController::class, 'update'])->name('applications.update');
+
+
+Route::patch('/applications/{applicationId}/status', [ApplicationController::class, 'updateStatus'])->name('applications.updateStatus');
+
 
 
 

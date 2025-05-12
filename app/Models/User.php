@@ -85,6 +85,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class, 'receiver_id');
     }
+
+    public function jobApplications()
+    {
+        return $this->hasMany(JobApplication::class, 'job_seeker_id');
+    }
+
     
 
 }

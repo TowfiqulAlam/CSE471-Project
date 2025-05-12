@@ -10,6 +10,8 @@ use App\Models\Availability;
 use App\Models\Portfolio;
 use App\Models\Rating;
 use Illuminate\Support\Facades\DB;
+use App\Models\JobApplication;
+
 
 
 class ProfileController extends Controller
@@ -44,6 +46,11 @@ class ProfileController extends Controller
         $portfolio = DB::table('portfolios')->where('user_id', $user->id)->first();
         $ratings = $user->ratings()->latest()->get();
 
-        return view('applicants.view', compact('user', 'skills', 'availability', 'portfolio', 'ratings'));
+        $jobApplications = JobApplication::where('job_seeker_id', $user->id)->get();
+
+
+        return view('applicants.view', compact('user', 'skills', 'availability', 'portfolio', 'ratings', 'jobApplications'));
+
+
     }
 }

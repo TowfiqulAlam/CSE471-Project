@@ -49,5 +49,32 @@
     @else
         <p>No ratings yet.</p>
     @endif
+    <h3>Job Applications</h3>
+            @foreach($jobApplications as $application)
+                <p>
+                    Status: {{ ucfirst($application->status) }}
+                   
+                    @if($application->status == 'applied')
+                        <form action="{{ route('applications.updateStatus', $application->id) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" name="status" value="hired" class="btn btn-success">Hire</button>
+                            <button type="submit" name="status" value="rejected" class="btn btn-danger">Reject</button>
+                        </form>
+                    @elseif($application->status == 'hired')
+                        <form action="{{ route('applications.updateStatus', $application->id) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" name="status" value="completed" class="btn btn-info">Complete</button>
+                            <button type="submit" name="status" value="rejected" class="btn btn-danger">Reject</button>
+                            <!-- Fire Button -->
+                            <button type="submit" name="status" value="rejected" class="btn btn-warning">Fire</button>
+                        </form>
+                    @elseif($application->status == 'rejected' || $application->status == 'completed')
+                        <p>Status: {{ ucfirst($application->status) }}</p>
+                    @endif
+                </p>
+            @endforeach
+
 </div>
 @endsection
