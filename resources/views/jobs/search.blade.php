@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <p><strong>Location:</strong> {{ $job->location }}</p>
-                <p><strong>Salary:</strong> ৳{{ $job->salary }}</p>
+                <p><strong>Salary:</strong> ${{ $job->salary }}</p>
                 <p><strong>Description:</strong> {{ $job->description }}</p>
                 @if($job->starting_time && $job->ending_time)
                     <p><strong>Time:</strong> {{ $job->starting_time }} to {{ $job->ending_time }}</p>
