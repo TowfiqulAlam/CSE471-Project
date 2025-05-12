@@ -19,6 +19,7 @@
                                 <th>Employee Name</th>
                                 <th>Email</th>
                                 <th>Chat</th>
+                                <th>Payment</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,6 +31,9 @@
                                         <a href="{{ route('chat.index', ['job_id' => $job->id, 'user_id' => $application->job_seeker_id]) }}" class="btn btn-sm btn-primary">
                                             Chat
                                         </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('employer.payments') }}" class="btn btn-sm btn-primary">Go to Payments</a>
                                     </td>
                                 </tr>
                             @endforeach
